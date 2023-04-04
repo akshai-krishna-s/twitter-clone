@@ -1,3 +1,10 @@
+// getRefreshTokenByToken is a function that queries the database for a refresh token from the database
+// decodeRefreshToken decodes the refresh token and returns the payload
+// getUserById is a function that queries the database for a user by the user's ID
+// generateTokens is a function that generates a new access token and refresh token
+// sendError is a function that sends an error response
+// createError is a function that creates a new error object
+
 import { getRefreshTokenByToken } from '../../db/refreshTokens.js'
 import { decodeRefreshToken, generateTokens } from '../../utils/jwt.js'
 import { getUserById } from '../../db/users.js'
