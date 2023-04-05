@@ -3,7 +3,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  // previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
@@ -46,4 +45,10 @@ model Tweet {
   // Author
   author   User   @relation(fields: [authorId], references: [id])
   authorId String @db.ObjectId
+
+  replyToId String? @db.ObjectId
+  replyTo   Tweet?  @relation("replies", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  replies   Tweet[] @relation("replies")
+
+  // MediaFiles 
 }
