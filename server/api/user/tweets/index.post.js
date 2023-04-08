@@ -1,4 +1,7 @@
 import formidable from 'formidable'
+import { createTweet } from '../../../db/tweets.js'
+import { tweetTransformer } from '../../../transformers/tweet.js'
+import { createMediaFile } from '../../../db/mediaFiles.js'
 
 export default defineEventHandler(async (event) => {
   const form = formidable({})
@@ -22,7 +25,21 @@ export default defineEventHandler(async (event) => {
     authorId: userId,
   }
 
+  const tweet = await createTweet(tweetData)
+
+  const filePromises = Object.keys(files).map(async (key) => {
+    return await createMediaFile({
+      url: '',
+      providerPublicId: 'random_id',
+      userId: userId,
+      tweetId: tweet.id,
+    })
+  })
+
+  await Promise.all(filePromises)
+
   return {
-    tweetData,
+    // tweet: tweetTransformer(tweet),
+    files,
   }
 })
