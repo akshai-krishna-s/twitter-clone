@@ -1,9 +1,6 @@
 <template>
   <div class="h-screen flex flex-col">
-    <div
-      class="p-2 my-2 rounded-full hover:bg-blue-50 dark:hover:bg-white/20"
-      :class="defaultTransition"
-    >
+    <div class="p-2 my-2 rounded-full hover:bg-blue-50 dark:hover:bg-white/20" :class="defaultTransition">
       <NuxtLink to="/">
         <div class="w-8 h-8">
           <LogoTwitter />
@@ -66,22 +63,26 @@
         </template>
         <template v-slot:name> More </template>
       </SidebarLeftTab>
+
+      <div class="hidden xl:block">
+        <UIButton liquid size="lg">
+          <span class="font-bold">Tweet</span>
+        </UIButton>
+      </div>
+
+      <div class="block xl:hidden">
+        <UIButton>
+          <div class="w-6 h-6 font-bold"><PencilIcon /></div>
+        </UIButton>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { HomeIcon } from "@heroicons/vue/20/solid";
+import { HomeIcon } from '@heroicons/vue/20/solid'
 
-import {
-  HashtagIcon,
-  BellIcon,
-  InboxIcon,
-  BookmarkIcon,
-  DocumentTextIcon,
-  UserIcon,
-  EllipsisHorizontalCircleIcon,
-} from "@heroicons/vue/24/outline";
+import { HashtagIcon, BellIcon, InboxIcon, BookmarkIcon, DocumentTextIcon, UserIcon, EllipsisHorizontalCircleIcon, PencilIcon } from '@heroicons/vue/24/outline'
 
-const { defaultTransition } = useTailwindConfig();
+const { defaultTransition } = useTailwindConfig()
 </script>
