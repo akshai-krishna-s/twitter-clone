@@ -16,7 +16,10 @@ const props = defineProps({
 
 async function handleFormSubmit(data) {
   try {
-    const response = await postTweet(data)
+    const response = await postTweet({
+      text: data.text,
+      mediaFiles: data.mediaFiles,
+    })
     console.log(response)
   } catch (error) {
     console.log(error)
