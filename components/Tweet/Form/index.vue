@@ -28,7 +28,6 @@ async function handleFormSubmit(data) {
       text: data.text,
       mediaFiles: data.mediaFiles,
     })
-    alert(JSON.stringify(response))
   } catch (error) {
     console.log(error)
   } finally {
