@@ -6,7 +6,7 @@
       </div>
 
       <div class="w-full p-2">
-        <textarea v-model="text" class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text-white focus:ring-0" placeholder="What's happening ?"></textarea>
+        <textarea v-model="text" class="w-full h-11 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text-white focus:ring-0" placeholder="What's happening ?"></textarea>
       </div>
     </div>
     <!-- File Selector -->
