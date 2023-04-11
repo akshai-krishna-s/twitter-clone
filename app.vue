@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-const darkMode = ref(false)
+const darkMode = ref(true)
 const { useAuthUser, initAuth, useAuthLoading } = useAuth()
 const isAuthLoading = useAuthLoading()
 const user = useAuthUser()
