@@ -10,19 +10,19 @@
       <template v-slot:icon="{ classes }">
         <ArrowPathRoundedSquareIcon :class="classes" />
       </template>
-      <template v-slot:default> 7 </template>
+      <template v-slot:default> {{ generateRandomNumber() }} </template>
     </TweetItemActionsIcon>
     <TweetItemActionsIcon color="red">
       <template v-slot:icon="{ classes }">
         <HeartIcon :class="classes" />
       </template>
-      <template v-slot:default> 7 </template>
+      <template v-slot:default> {{ generateRandomNumber() }} </template>
     </TweetItemActionsIcon>
     <TweetItemActionsIcon color="blue">
       <template v-slot:icon="{ classes }">
         <ArrowUpTrayIcon :class="classes" />
       </template>
-      <template v-slot:default> 7 </template>
+      <template v-slot:default> {{ generateRandomNumber() }} </template>
     </TweetItemActionsIcon>
   </div>
 </template>
@@ -36,4 +36,8 @@ const props = defineProps({
     required: true,
   },
 })
+
+function generateRandomNumber() {
+  return Math.floor(Math.random() * 100)
+}
 </script>
