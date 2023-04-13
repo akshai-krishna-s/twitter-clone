@@ -2,8 +2,8 @@
   <div>
     <TweetItemHeader :tweet="props.tweet" />
 
-    <div class="ml-16">
-      <p class="flex-shrink font-medium text-gray-800 w-auto dark:text-white">
+    <div :class="tweetBodyWrapper">
+      <p class="flex-shrink font-medium text-gray-800 w-auto dark:text-white" :class="textSize">
         {{ props.tweet.text }}
       </p>
 
@@ -12,7 +12,7 @@
       </div>
 
       <div class="mt-2">
-        <TweetItemActions :tweet="props.tweet" />
+        <TweetItemActions :tweet="props.tweet" :compact="props.compact" />
       </div>
     </div>
   </div>
@@ -25,5 +25,12 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  compact: {
+    type: Boolean,
+    default: false,
+  },
 })
+
+const tweetBodyWrapper = computed(() => (props.compact ? 'ml-16' : 'ml-2 mt-4'))
+const textSize = computed(() => (props.compact ? 'text-base' : 'text-xl'))
 </script>
