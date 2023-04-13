@@ -10,7 +10,7 @@
       :key="tweet.id"
       class="pb-4 border-b hover:bg-gray-100 cursor-pointer dark:hover:bg-dim-300"
       :class="[twitterBorderColor, defaultTransition]"
-      @click.native="redirect(tweet)"
+      @click="redirect(tweet)"
     >
       <TweetItem :tweet="tweet" compact />
     </div>

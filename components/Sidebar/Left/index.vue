@@ -65,14 +65,14 @@
       </SidebarLeftTab>
 
       <div class="hidden xl:block">
-        <UIButton liquid size="lg">
+        <UIButton liquid size="lg" @on-click="emits('onTweet')">
           <span class="font-bold">Tweet</span>
         </UIButton>
       </div>
 
       <div class="block xl:hidden">
         <UIButton>
-          <div class="w-6 h-6 font-bold"><PencilIcon /></div>
+          <div class="w-6 h-6 font-bold" @on-click="emits('onTweet')"><PencilIcon /></div>
         </UIButton>
       </div>
     </div>
@@ -85,4 +85,6 @@ import { HomeIcon } from '@heroicons/vue/20/solid'
 import { HashtagIcon, BellIcon, InboxIcon, BookmarkIcon, DocumentTextIcon, UserIcon, EllipsisHorizontalCircleIcon, PencilIcon } from '@heroicons/vue/24/outline'
 
 const { defaultTransition } = useTailwindConfig()
+
+const emits = defineEmits(['onTweet'])
 </script>

@@ -8,7 +8,7 @@
           <!-- left -->
           <div class="hidden md:block xs-col-span-1 xl:col-span-2">
             <div class="sticky top-0">
-              <SidebarLeft />
+              <SidebarLeft @on-tweet="handleOpenTweetModal" />
             </div>
           </div>
 
@@ -27,6 +27,9 @@
       </div>
 
       <AuthPage v-else />
+      <UIModal :isOpen="postTweetModal" @on-close="handleModalClose">
+        <TweetForm :replyTo="replyTweet" showReply :user="user" @onSuccess="handleFormSuccess" />
+      </UIModal>
     </div>
   </div>
 </template>
@@ -35,9 +38,30 @@
 const darkMode = ref(true)
 const { useAuthUser, initAuth, useAuthLoading } = useAuth()
 const isAuthLoading = useAuthLoading()
+const { openPostTweetModal, closePostTweetModal, usePostTweetModal, useReplyTweet } = useTweets()
 const user = useAuthUser()
+
+const postTweetModal = usePostTweetModal()
+const emitter = useEmitter()
+const replyTweet = useReplyTweet()
+
+emitter.$on('replyTweet', (tweet) => {
+  openPostTweetModal(tweet)
+})
 
 onBeforeMount(() => {
   initAuth()
 })
+
+function handleFormSuccess(tweet) {
+  closePostTweetModal()
+}
+
+function handleModalClose() {
+  closePostTweetModal()
+}
+
+function handleOpenTweetModal() {
+  openPostTweetModal(null)
+}
 </script>
