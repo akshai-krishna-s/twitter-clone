@@ -19,6 +19,7 @@
 
 <script setup>
 const { twitterBorderColor, defaultTransition } = useTailwindConfig()
+
 const props = defineProps({
   tweets: {
     type: Array,
