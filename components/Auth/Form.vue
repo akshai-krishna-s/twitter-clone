@@ -1,11 +1,10 @@
 <template>
-  <div>
+  <div class="w-full">
     <div class="pt-5 space-y-6">
       <UIInput label="Username" placeholder="@username" v-model="data.username" />
       <UIInput v-model="data.password" label="Password" placeholder="********" type="password" />
-      <div>
-        <button @click="handleLogin">Login</button>
-      </div>
+
+      <UIButton @click="handleLogin" :disabled="isButtonDisabled" liquid>Login</UIButton>
     </div>
   </div>
 </template>
@@ -29,4 +28,8 @@ async function handleLogin() {
     data.login = false
   }
 }
+
+const isButtonDisabled = computed(() => {
+  return !data.username || !data.password || data.loading
+})
 </script>

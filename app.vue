@@ -8,7 +8,7 @@
           <!-- left -->
           <div class="hidden md:block xs-col-span-1 xl:col-span-2">
             <div class="sticky top-0">
-              <SidebarLeft @on-tweet="handleOpenTweetModal" />
+              <SidebarLeft :user="user" @on-tweet="handleOpenTweetModal" @on-logout="handleUserLogout" />
             </div>
           </div>
 
@@ -35,8 +35,8 @@
 </template>
 
 <script setup>
-const darkMode = ref(true)
-const { useAuthUser, initAuth, useAuthLoading } = useAuth()
+const darkMode = ref(false)
+const { useAuthUser, initAuth, useAuthLoading, logout } = useAuth()
 const isAuthLoading = useAuthLoading()
 const { openPostTweetModal, closePostTweetModal, usePostTweetModal, useReplyTweet } = useTweets()
 const user = useAuthUser()
@@ -49,12 +49,17 @@ emitter.$on('replyTweet', (tweet) => {
   openPostTweetModal(tweet)
 })
 
+emitter.$on('toggleDarkMode', () => {
+  darkMode.value = !darkMode.value
+})
+
 onBeforeMount(() => {
   initAuth()
 })
 
 function handleFormSuccess(tweet) {
   closePostTweetModal()
+  navigateTo(`/status/${tweet.id}`)
 }
 
 function handleModalClose() {
@@ -63,5 +68,9 @@ function handleModalClose() {
 
 function handleOpenTweetModal() {
   openPostTweetModal(null)
+}
+
+function handleUserLogout() {
+  logout()
 }
 </script>

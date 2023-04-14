@@ -11,7 +11,7 @@
         <img :src="image.url" class="w-full rounded-2xl" />
       </div>
 
-      <div class="mt-2">
+      <div class="mt-2" v-if="!props.hideActions">
         <TweetItemActions :tweet="props.tweet" :compact="props.compact" @on-comment-click="handleCommentClick" />
       </div>
     </div>
@@ -28,6 +28,10 @@ const props = defineProps({
     required: true,
   },
   compact: {
+    type: Boolean,
+    default: false,
+  },
+  hideActions: {
     type: Boolean,
     default: false,
   },

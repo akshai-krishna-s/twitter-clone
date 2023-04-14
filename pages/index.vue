@@ -16,7 +16,7 @@
 
 <script setup>
 const { twitterBorderColor } = useTailwindConfig()
-const { getHomeTweets } = useTweets()
+const { getTweets } = useTweets()
 
 const loading = ref(false)
 
@@ -28,7 +28,7 @@ const user = useAuthUser()
 onBeforeMount(async () => {
   loading.value = true
   try {
-    const { tweets } = await getHomeTweets()
+    const { tweets } = await getTweets()
     homeTweets.value = tweets
   } catch (error) {
     console.log(error)
